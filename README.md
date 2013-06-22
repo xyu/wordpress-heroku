@@ -1,5 +1,7 @@
 # WordPress Heroku
 
+_**NOTE:** This is a fork of Matt Hoofman's [WordPress Heroku](https://github.com/mhoofman/wordpress-heroku)_
+
 This project is a template for installing and running [WordPress](http://wordpress.org/) on [Heroku](http://www.heroku.com/). The repository comes bundled with [PostgreSQL for WordPress](http://wordpress.org/extend/plugins/postgresql-for-wordpress/) and [WP Read-Only](http://wordpress.org/extend/plugins/wpro/).
 
 Installation
@@ -7,7 +9,7 @@ Installation
 
 Clone the repository from Github
 
-    $ git clone git://github.com/mhoofman/wordpress-heroku.git
+    $ git clone git://github.com/xyu/wordpress-heroku.git
 
 With the [Heroku gem](http://devcenter.heroku.com/articles/heroku-command), create your app
 
@@ -30,30 +32,30 @@ Promote the database (replace COLOR with the color name from the above output)
     $ heroku pg:promote HEROKU_POSTGRESQL_COLOR
     > Promoting HEROKU_POSTGRESQL_COLOR to DATABASE_URL... done
 
-Create a new branch for any configuration/setup changes needed
+Create a new production branch for your app
 
     $ git checkout -b production
 
-Copy the `wp-config.php`
+Add unique keys and salts to your Heroku config
 
-    $ cp wp-config-sample.php wp-config.php
-
-Update unique keys and salts in `wp-config.php` on lines 48-55. Wordpress can provide random values [here](https://api.wordpress.org/secret-key/1.1/salt/).
-
-    define('AUTH_KEY',         'put your unique phrase here');
-    define('SECURE_AUTH_KEY',  'put your unique phrase here');
-    define('LOGGED_IN_KEY',    'put your unique phrase here');
-    define('NONCE_KEY',        'put your unique phrase here');
-    define('AUTH_SALT',        'put your unique phrase here');
-    define('SECURE_AUTH_SALT', 'put your unique phrase here');
-    define('LOGGED_IN_SALT',   'put your unique phrase here');
-    define('NONCE_SALT',       'put your unique phrase here');
-
-Clear `.gitignore` and commit `wp-config.php`
-
-    $ >.gitignore
-    $ git add .
-    $ git commit -m "Initial WordPress commit"
+    $ heroku config:set\
+        WP_AUTH_KEY=`dd if=/dev/random bs=1 count=96 2>/dev/null | base64`\
+        WP_SECURE_AUTH_KEY=`dd if=/dev/random bs=1 count=96 2>/dev/null | base64`\
+        WP_LOGGED_IN_KEY=`dd if=/dev/random bs=1 count=96 2>/dev/null | base64`\
+        WP_NONCE_KEY=`dd if=/dev/random bs=1 count=96 2>/dev/null | base64`\
+        WP_AUTH_SALT=`dd if=/dev/random bs=1 count=96 2>/dev/null | base64`\
+        WP_SECURE_AUTH_SALT=`dd if=/dev/random bs=1 count=96 2>/dev/null | base64`\
+        WP_LOGGED_IN_SALT=`dd if=/dev/random bs=1 count=96 2>/dev/null | base64`\
+        WP_NONCE_SALT=`dd if=/dev/random bs=1 count=96 2>/dev/null | base64`
+    > Setting config vars and restarting xyuio... done, v3
+    > WP_AUTH_KEY:         ...
+    > WP_AUTH_SALT:        ...
+    > WP_LOGGED_IN_KEY:    ...
+    > WP_LOGGED_IN_SALT:   ...
+    > WP_NONCE_KEY:        ...
+    > WP_NONCE_SALT:       ...
+    > WP_SECURE_AUTH_KEY:  ...
+    > WP_SECURE_AUTH_SALT: ...
 
 Deploy to Heroku
 

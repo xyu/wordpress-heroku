@@ -57,15 +57,16 @@ define('DB_COLLATE', '');
  *
  * @since 2.6.0
  */
+define('AUTH_KEY',         $_ENV['WP_AUTH_KEY']);
+define('SECURE_AUTH_KEY',  $_ENV['WP_SECURE_AUTH_KEY']);
+define('LOGGED_IN_KEY',    $_ENV['WP_LOGGED_IN_KEY']);
+define('NONCE_KEY',        $_ENV['WP_NONCE_KEY']);
+define('AUTH_SALT',        $_ENV['WP_AUTH_SALT']);
+define('SECURE_AUTH_SALT', $_ENV['WP_SECURE_AUTH_SALT']);
+define('LOGGED_IN_SALT',   $_ENV['WP_LOGGED_IN_SALT']);
+define('NONCE_SALT',       $_ENV['WP_NONCE_SALT']);
+
 /**#@-*/
-define('AUTH_KEY',         'XRg9v,]Pnu/&i$yTv-&|Nm.Ja*{XE&%6}0kgudf+_@$Q/-&?V*QFYVLyZrJ!Un`V');
-define('SECURE_AUTH_KEY',  'h8xcY`ZIP91Waye5K=0AkBjdV.qk%|<!U4*hTO*:Vq@ZdDU _e{gNw_ M*&t`%7f');
-define('LOGGED_IN_KEY',    '@8!e7t@Wr,c.c;^umK$4oG{rvS ,|H6#HM,C)>BI(ff;Pe6nDKc*#4h2p8[%_N/&');
-define('NONCE_KEY',        'kU4}pL&bcr}<ftvHnD[Fu-q}J+(QCgRH+`wee#28?W{8WvAq[r7[]4&bT2V39qPe');
-define('AUTH_SALT',        'P~/Cc@JC.9=xA|gsO-&D9s+g*{$Hw)}v:3de{/,etkB*m QrYgKVEC[Sy;+6{qtb');
-define('SECURE_AUTH_SALT', ':c-)Nce98qkhL- ?O;8OD-ubg1L?Q#g49V`nY`s-o^jY2E:]d9_Ck#|f8C*@g{:z');
-define('LOGGED_IN_SALT',   'wJ}IlQbAa-pz|CX%y{=Z)N 2:1$L?{PaQ1?|XJj+1ijjbU6+k?+4f-)OzI^JyHI+');
-define('NONCE_SALT',       'L&+%z@L i}I|9uDp$`%9IO-_p0eVqe}{&iTRF5m%|f&8k&oSztc|H(c~=hQ!-+IY');
 
 /**
  * WordPress Database Table prefix.
