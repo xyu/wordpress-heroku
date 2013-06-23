@@ -2,7 +2,13 @@
 
 _**NOTE:** This is a fork of Matt Hoofman's [WordPress Heroku](https://github.com/mhoofman/wordpress-heroku)_
 
-This project is a template for installing and running [WordPress](http://wordpress.org/) on [Heroku](http://www.heroku.com/). The repository comes bundled with [PostgreSQL for WordPress](http://wordpress.org/extend/plugins/postgresql-for-wordpress/) and [WP Read-Only](http://wordpress.org/extend/plugins/wpro/).
+This project is a template for installing and running [WordPress](http://wordpress.org/) on [Heroku](http://www.heroku.com/). The repository comes bundled with the following plugins.
+* [PostgreSQL for WordPress](http://wordpress.org/extend/plugins/postgresql-for-wordpress/) - For running with Heroku Postgres add-on
+* [SASL object cache](https://github.com/xyu/SASL-object-cache) - For running with MemCachier add-on
+* [Authy Two Factor Auth](https://www.authy.com/products/wordpress)
+* [Batcache](http://wordpress.org/plugins/batcache/)
+* [Jetpack](http://jetpack.me/)
+* [WP Read-Only](http://wordpress.org/extend/plugins/wpro/)
 
 Installation
 ============
@@ -23,14 +29,21 @@ Add a database to your app
 
     $ heroku addons:add heroku-postgresql:dev
     > Adding heroku-postgresql:dev to strange-turtle-1234... done, v2 (free)
-    > Attached as HEROKU_POSTGRESQL_COLOR
+    > Attached as HEROKU_POSTGRESQL_COLOR_URL
     > Database has been created and is available
     > Use `heroku addons:docs heroku-postgresql:dev` to view documentation
 
 Promote the database (replace COLOR with the color name from the above output)
 
-    $ heroku pg:promote HEROKU_POSTGRESQL_COLOR
-    > Promoting HEROKU_POSTGRESQL_COLOR to DATABASE_URL... done
+    $ heroku pg:promote HEROKU_POSTGRESQL_COLOR_URL
+    > Promoting HEROKU_POSTGRESQL_COLOR_URL to DATABASE_URL... done
+
+Add memcache to your app
+
+    $ heroku addons:add memcachier:dev
+    > Adding memcachier:dev on xyuio-staging... done, v8 (free)
+    > MemCachier: added.  Your credentials may take up to 3 minutes to sync to our servers.
+    > Use `heroku addons:docs memcachier:dev` to view documentation.
 
 Create a new production branch for your app
 
