@@ -16,8 +16,8 @@ class WP_SendGrid_Settings {
 
 	private static $settings;
 	private static $default_settings = array( 
-		'username' => $_ENV['SENDGRID_USERNAME'],
-		'password' => $_ENV['SENDGRID_PASSWORD'],
+		'username' => '',
+		'password' => '',
 		'api'      => self::API_REST,
 		'secure'   => false
 	);
