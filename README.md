@@ -9,6 +9,7 @@ This project is a template for installing and running [WordPress](http://wordpre
 * [Batcache](http://wordpress.org/plugins/batcache/)
 * [Jetpack](http://jetpack.me/)
 * [WP Read-Only](http://wordpress.org/extend/plugins/wpro/)
+* [WP SendGrid](http://wordpress.org/plugins/wp-sendgrid/)
 
 Installation
 ============
@@ -89,13 +90,37 @@ Deploy to Heroku
 
 After deployment WordPress has a few more steps to setup and thats it!
 
+Optional Installation
+=====================
+
+Installing and configuring the items below are not essential to get a working WordPress install but will make your site more functional.
+
 Media Uploads
-===
+-------------
+
 [WP Read-Only](http://wordpress.org/extend/plugins/wpro/) plugin is included in the repository allowing the use of [S3](http://aws.amazon.com/s3/) for media uploads.
 
 1. Activate the plugin under 'Plugins', if not already activated.
 2. Input your Amazon S3 credentials in 'Settings'->'WPRO Settings'.
 
+Sending Email
+-------------
+[WP SendGrid](http://wordpress.org/plugins/wp-sendgrid/) plugin is included in the repository allowing the use of [SendGrid](https://addons.heroku.com/sendgrid/) for media uploads.
+
+Add SendGrid to your app
+
+    $ heroku addons:add sendgrid:starter
+    > Adding sendgrid:starter on xyuio-staging... done, v11 (free)
+    > Use `heroku addons:docs sendgrid:starter` to view documentation.
+
+Get the credentials from Heroku
+
+    $ heroku config:get SENDGRID_USERNAME
+    > app***@heroku.com
+    $ heroku config:get SENDGRID_PASSWORD
+    > ***
+
+Activate the plugin with Heroku SendGrid credentials
 
 Usage
 ========
