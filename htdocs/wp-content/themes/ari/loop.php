@@ -33,18 +33,19 @@
 
 				<?php if ( count( get_the_category() ) ) : ?>
 					<?php printf( __( 'Categories: %2$s', 'ari' ), 'entry-utility-prep entry-utility-prep-cat-links', get_the_category_list( ', ' ) ); ?>
-					|
 				<?php endif; ?>
 				<?php
 					$tags_list = get_the_tag_list( '', ', ' );
 					if ( $tags_list ):
 				?>
-					<?php printf( __( 'Tags: %2$s', 'ari' ), 'entry-utility-prep entry-utility-prep-tag-links', $tags_list ); ?>
 					|
+					<?php printf( __( 'Tags: %2$s', 'ari' ), 'entry-utility-prep entry-utility-prep-tag-links', $tags_list ); ?>
 				<?php endif; ?>
-				
-				<?php comments_popup_link( __( 'Leave a comment', 'ari' ), __( '1 comment', 'ari' ), __( '% comments', 'ari' ) ); ?>
-				<?php edit_post_link( __( 'Edit &rarr;', 'ari' ), '| ', '' ); ?></p>
+				<?php if ( comments_open() ) : ?>
+					|
+					<?php comments_popup_link( __( 'Leave a comment', 'ari' ), __( '1 comment', 'ari' ), __( '% comments', 'ari' ) ); ?>
+				<?php endif; ?>
+				<?php edit_post_link( __( 'Edit &rarr;', 'ari' ), ' | ', '' ); ?></p>
 	</div>
 	<!--end Post-->
 
