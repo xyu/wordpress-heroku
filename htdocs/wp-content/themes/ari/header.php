@@ -13,10 +13,11 @@
 		echo ' | ' . sprintf( __( 'Page %s', 'ari' ), max( $paged, $page ) );
 	?></title>
 	<link rel="profile" href="http://gmpg.org/xfn/11" />
-	<link rel="stylesheet" href="<?php bloginfo( 'stylesheet_url' ); ?>" type="text/css" media="all" />
+	<link rel="stylesheet" type="text/css" href="<?php bloginfo( 'stylesheet_url' ); ?>" media="all">
 	<?php if (get_option('ari_dark-style') == 'checked') : ?>
-	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/dark.css" type="text/css">
+	<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/css/dark.css">
 	<?php endif; ?>
+	<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 	<?php if ( is_singular() && get_option( 'thread_comments' ) ) wp_enqueue_script( 'comment-reply' ); ?>
 	<?php wp_head(); ?>

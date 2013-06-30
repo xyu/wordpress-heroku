@@ -323,38 +323,6 @@ table#wp-calendar caption {
 table#wp-calendar td {
 	padding:3px;
 }
-/* --- Social Links Custom Widget --- */
-ul.sidebar li.widget_sociallinks a {
-	padding:0px 20px 0px 20px;
-	line-height:23px;
-}
-ul.sidebar li.widget_sociallinks a.rss {
-	background:url(images/rss-icon.png) 0 0 no-repeat;
-}
-ul.sidebar li.widget_sociallinks a.twitter {
-	background:url(images/twitter-icon.png) 0 0 no-repeat;
-}
-ul.sidebar li.widget_sociallinks a.facebook {
-	background:url(images/fb-icon.png) 0 0 no-repeat;
-}
-ul.sidebar li.widget_sociallinks a.googleplus {
-	background:url(images/googleplus-icon.png) 0 0 no-repeat;
-}
-ul.sidebar li.widget_sociallinks a.flickr {
-	background:url(images/flickr-icon.png) 0 0 no-repeat;
-}
-ul.sidebar li.widget_sociallinks a.vimeo {
-	background:url(images/vimeo-icon.png) 0 0 no-repeat;
-}
-ul.sidebar li.widget_sociallinks a.xing {
-	background:url(images/xing-icon.png) 0 0 no-repeat;
-}
-ul.sidebar li.widget_sociallinks a.linkedin {
-	background:url(images/linkedin-icon.png) 0 0 no-repeat;
-}
-ul.sidebar li.widget_sociallinks a.delicious {
-	background:url(images/delicious-icon.png) 0 0 no-repeat;
-}
 
 /* Posts
 --------------------------------------------- */
@@ -843,7 +811,11 @@ input.wpcf7-submit {
 	border-bottom:1px dotted #4C4C4C;
 	overflow:hidden;
 }
-#sidebar-secondary ul li.widget_sociallinks ul li, #sidebar-secondary ul.sidebar li.widget_pages ul li, #sidebar-secondary ul.sidebar li.widget_archive ul li, #sidebar-secondary ul.sidebar li.widget_categories ul li, #sidebar-secondary ul.sidebar li.widget_links ul li {
+
+#sidebar-secondary ul.sidebar li.widget_pages ul li, 
+#sidebar-secondary ul.sidebar li.widget_archive ul li, 
+#sidebar-secondary ul.sidebar li.widget_categories ul li, 
+#sidebar-secondary ul.sidebar li.widget_links ul li {
 	float:left;
 	margin:0px 22px 5px 0px;
 }
@@ -917,9 +889,6 @@ input.wpcf7-submit {
 	position:relative;
 	float: none;
 	clear: both;
-}
-#sidebar-primary ul li.widget_social_links ul li {
-	float:left;
 }
 #main {
 	width: auto;
