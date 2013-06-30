@@ -219,6 +219,8 @@ class Ari_SocialLinks_Widget extends WP_Widget {
 		$linkedin_url = empty($instance['linkedin_url']) ? ' ' : apply_filters('widget_linkedin_url', $instance['linkedin_url']);
 		$delicious_title = empty($instance['delicious_title']) ? ' ' : apply_filters('widget_delicious_title', $instance['delicious_title']);
 		$delicious_url = empty($instance['delicious_url']) ? ' ' : apply_filters('widget_delicious_url', $instance['delicious_url']);
+		$github_title = empty($instance['github_title']) ? ' ' : apply_filters('widget_github_title', $instance['github_title']);
+		$github_url = empty($instance['github_url']) ? ' ' : apply_filters('widget_github_url', $instance['github_url']);
 		
 		if ( !empty( $title ) ) { echo $before_title . $title . $after_title; };
 		echo '<ul>';
@@ -231,6 +233,7 @@ class Ari_SocialLinks_Widget extends WP_Widget {
 		if($xing_title == ' ') { echo ''; } else {  echo  '  <li class="widget_sociallinks"><i class="icon-xing"></i> <a href=" '. $xing_url .'" class="xing">'. $xing_title .'</a></li>'; }
 		if($linkedin_title == ' ') { echo ''; } else {  echo  '<li class="widget_sociallinks"><i class="icon-linkedin"></i> <a href=" '. $linkedin_url .'" class="linkedin">'. $linkedin_title .'</a></li>'; }
 		if($delicious_title == ' ') { echo ''; } else {  echo  '<li class="widget_sociallinks"><i class="icon-th-large"></i> <a href=" '. $delicious_url .'" class="delicious">'. $delicious_title .'</a></li>'; }
+		if($github_title == ' ') { echo ''; } else {  echo  '<li class="widget_sociallinks"><i class="icon-github"></i> <a href=" '. $github_url .'" class="github">'. $github_title .'</a></li>'; }
 		echo '</ul>';
 		echo $after_widget;
 		
@@ -257,6 +260,8 @@ class Ari_SocialLinks_Widget extends WP_Widget {
 		$instance['linkedin_url'] = strip_tags($new_instance['linkedin_url']);
 		$instance['delicious_title'] = strip_tags($new_instance['delicious_title']);
 		$instance['delicious_url'] = strip_tags($new_instance['delicious_url']);
+		$instance['github_title'] = strip_tags($new_instance['github_title']);
+		$instance['github_url'] = strip_tags($new_instance['github_url']);
 		return $instance;
 	}
 	function form($instance) {
@@ -280,7 +285,9 @@ class Ari_SocialLinks_Widget extends WP_Widget {
 			'linkedin_title' => '',
 			'linkedin_url' => '',
 			'delicious_title' => '',
-			'delicious_url' => ''
+			'delicious_url' => '',
+			'github_title' => '',
+			'github_url' => '',
 		) );
 		$title = strip_tags($instance['title']);	
 		$rss_title = strip_tags($instance['rss_title']);
@@ -301,6 +308,8 @@ class Ari_SocialLinks_Widget extends WP_Widget {
 		$linkedin_url = strip_tags($instance['linkedin_url']);
 		$delicious_title = strip_tags($instance['delicious_title']);
 		$delicious_url = strip_tags($instance['delicious_url']);
+		$github_title = strip_tags($instance['github_title']);
+		$github_url = strip_tags($instance['github_url']);
 ?>
 			<p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e( 'Title:', 'ari' ); ?> <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($title); ?>" /></label></p>
 			<p><label for="<?php echo $this->get_field_id('rss_title'); ?>"><?php _e( 'RSS Text:', 'ari' ); ?> <input class="widefat" id="<?php echo $this->get_field_id('rss_title'); ?>" name="<?php echo $this->get_field_name('rss_title'); ?>" type="text" value="<?php echo esc_attr($rss_title); ?>" /></label></p>	
@@ -321,7 +330,8 @@ class Ari_SocialLinks_Widget extends WP_Widget {
 			<p><label for="<?php echo $this->get_field_id('linkedin_url'); ?>"><?php _e( 'LinkedIn URL:', 'ari' ); ?> <input class="widefat" id="<?php echo $this->get_field_id('linkedin_url'); ?>" name="<?php echo $this->get_field_name('linkedin_url'); ?>" type="text" value="<?php echo esc_attr($linkedin_url); ?>" /></label></p>	
 			<p><label for="<?php echo $this->get_field_id('delicious_title'); ?>"><?php _e( 'Delicious Text:', 'ari' ); ?> <input class="widefat" id="<?php echo $this->get_field_id('delicious_title'); ?>" name="<?php echo $this->get_field_name('delicious_title'); ?>" type="text" value="<?php echo esc_attr($delicious_title); ?>" /></label></p>
 			<p><label for="<?php echo $this->get_field_id('delicious_url'); ?>"><?php _e( 'Delicious URL:', 'ari' ); ?> <input class="widefat" id="<?php echo $this->get_field_id('delicious_url'); ?>" name="<?php echo $this->get_field_name('delicious_url'); ?>" type="text" value="<?php echo esc_attr($delicious_url); ?>" /></label></p>
-
+			<p><label for="<?php echo $this->get_field_id('github_title'); ?>"><?php _e( 'GitHub Text:', 'ari' ); ?> <input class="widefat" id="<?php echo $this->get_field_id('github_title'); ?>" name="<?php echo $this->get_field_name('github_title'); ?>" type="text" value="<?php echo esc_attr($github_title); ?>" /></label></p>
+			<p><label for="<?php echo $this->get_field_id('github_url'); ?>"><?php _e( 'GitHub URL:', 'ari' ); ?> <input class="widefat" id="<?php echo $this->get_field_id('github_url'); ?>" name="<?php echo $this->get_field_name('github_url'); ?>" type="text" value="<?php echo esc_attr($github_url); ?>" /></label></p>
 <?php
 	}
 }
