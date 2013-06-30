@@ -222,15 +222,15 @@ class Ari_SocialLinks_Widget extends WP_Widget {
 		
 		if ( !empty( $title ) ) { echo $before_title . $title . $after_title; };
 		echo '<ul>';
-		if($rss_title == ' ') { echo ''; } else {  echo  '<li class="widget_sociallinks"><a href=" '. $rss_url .'" class="rss"><i class="icon-rss"></i> '. $rss_title .'</a></li>'; }
-		if($twitter_title == ' ') { echo ''; } else {  echo  '<li class="widget_sociallinks"><a href=" '. $twitter_url .'" class="twitter"><i class="icon-twitter"></i> '. $twitter_title .'</a></li>'; }
-		if($fb_title == ' ') { echo ''; } else {  echo  '<li class="widget_sociallinks"><a href=" '. $fb_url .'" class="facebook"><i class="icon-facebook"></i> '. $fb_title .'</a></li>'; }
-		if($googleplus_title == ' ') { echo ''; } else {  echo  '<li class="widget_sociallinks"><a href=" '. $googleplus_url .'" class="googleplus"><i class="icon-google-plus"></i> '. $googleplus_title .'</a></li>'; }
-		if($flickr_title == ' ') { echo ''; } else {  echo  '<li class="widget_sociallinks"><a href=" '. $flickr_url .'" class="flickr"><i class="icon-flickr"></i> '. $flickr_title .'</a></li>'; }
-		if($vimeo_title == ' ') { echo ''; } else {  echo  '  <li class="widget_sociallinks"><a href=" '. $vimeo_url .'" class="vimeo"><i class="icon-youtube-play"></i> '. $vimeo_title .'</a></li>'; }
-		if($xing_title == ' ') { echo ''; } else {  echo  '  <li class="widget_sociallinks"><a href=" '. $xing_url .'" class="xing"><i class="icon-xing"></i> '. $xing_title .'</a></li>'; }
-		if($linkedin_title == ' ') { echo ''; } else {  echo  '<li class="widget_sociallinks"><a href=" '. $linkedin_url .'" class="linkedin"><i class="icon-linkedin"></i> '. $linkedin_title .'</a></li>'; }
-		if($delicious_title == ' ') { echo ''; } else {  echo  '<li class="widget_sociallinks"><a href=" '. $delicious_url .'" class="delicious"><i class="icon-th-large"></i> '. $delicious_title .'</a></li>'; }
+		if($rss_title == ' ') { echo ''; } else {  echo  '<li class="widget_sociallinks"><i class="icon-rss"></i> <a href=" '. $rss_url .'" class="rss">'. $rss_title .'</a></li>'; }
+		if($twitter_title == ' ') { echo ''; } else {  echo  '<li class="widget_sociallinks"><i class="icon-twitter"></i> <a href=" '. $twitter_url .'" class="twitter">'. $twitter_title .'</a></li>'; }
+		if($fb_title == ' ') { echo ''; } else {  echo  '<li class="widget_sociallinks"><i class="icon-facebook"></i> <a href=" '. $fb_url .'" class="facebook">'. $fb_title .'</a></li>'; }
+		if($googleplus_title == ' ') { echo ''; } else {  echo  '<li class="widget_sociallinks"><i class="icon-google-plus"></i> <a href=" '. $googleplus_url .'" class="googleplus">'. $googleplus_title .'</a></li>'; }
+		if($flickr_title == ' ') { echo ''; } else {  echo  '<li class="widget_sociallinks"><i class="icon-flickr"></i> <a href=" '. $flickr_url .'" class="flickr">'. $flickr_title .'</a></li>'; }
+		if($vimeo_title == ' ') { echo ''; } else {  echo  '  <li class="widget_sociallinks"><i class="icon-youtube-play"></i> <a href=" '. $vimeo_url .'" class="vimeo">'. $vimeo_title .'</a></li>'; }
+		if($xing_title == ' ') { echo ''; } else {  echo  '  <li class="widget_sociallinks"><i class="icon-xing"></i> <a href=" '. $xing_url .'" class="xing">'. $xing_title .'</a></li>'; }
+		if($linkedin_title == ' ') { echo ''; } else {  echo  '<li class="widget_sociallinks"><i class="icon-linkedin"></i> <a href=" '. $linkedin_url .'" class="linkedin">'. $linkedin_title .'</a></li>'; }
+		if($delicious_title == ' ') { echo ''; } else {  echo  '<li class="widget_sociallinks"><i class="icon-th-large"></i> <a href=" '. $delicious_url .'" class="delicious">'. $delicious_title .'</a></li>'; }
 		echo '</ul>';
 		echo $after_widget;
 		
