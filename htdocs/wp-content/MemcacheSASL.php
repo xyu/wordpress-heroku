@@ -273,7 +273,7 @@ class MemcacheSASL
         $sent = $this->_send(array(
                     'opcode' => 0x07
                     ));
-        fclose($this->_fp);
+        $data = $this->_recv();
 
         return TRUE;
     }
