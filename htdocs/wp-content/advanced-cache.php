@@ -31,7 +31,7 @@ class batcache {
 	var $uncached_headers = array('transfer-encoding'); // These headers will never be cached. Apply strtolower.
 
 	var $debug        = false; // Set false to hide the batcache info <!-- comment -->
-        var $debug_header = true; // Set false to hide the batcache info header
+	var $debug_header = true; // Set false to hide the batcache info header
 
 	var $cache_control = true; // Set false to disable Last-Modified and Cache-Control headers
 
@@ -359,7 +359,7 @@ if ( isset($batcache->cache['time']) && ! $batcache->genlock && time() < $batcac
 	if ( $this->debug_header ) {
 		header(sprintf(
 			"X-batcache: Cached, generated in %u ms, expires in %u s, served in %u ms",
-			$cache['timer'] * 1000,
+			$batcache->cache['timer'] * 1000,
 			$batcache->max_age - time() + $batcache->cache['time'],
 			$batcache->timer_stop(false, 3) * 1000
 		), true);
