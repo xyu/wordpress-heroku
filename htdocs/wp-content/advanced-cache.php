@@ -356,7 +356,7 @@ if ( isset($batcache->cache['time']) && ! $batcache->genlock && time() < $batcac
 			$batcache->cache['output'] = substr($batcache->cache['output'], 0, $tag_position) . $tag . substr($batcache->cache['output'], $tag_position);
 		}
 	}
-	if ( $this->debug_header ) {
+	if ( $batcache->debug_header ) {
 		header(sprintf(
 			"X-batcache: Cached, generated in %u ms, expires in %u s, served in %u ms",
 			$batcache->cache['timer'] * 1000,
