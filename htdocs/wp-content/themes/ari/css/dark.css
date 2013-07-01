@@ -30,6 +30,7 @@ a:hover {
 	color:#b7b7b7;
 }
 a, ul.sidebar li.widget_text a {
+	color:#8a8a8a;
 	text-decoration: underline;
 }
 ul.sidebar a, p.meta a, .comment-meta a, p.logged-in-as a, a.post-edit-link, #footer a {
