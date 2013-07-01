@@ -30,7 +30,8 @@ class batcache {
 
 	var $uncached_headers = array('transfer-encoding'); // These headers will never be cached. Apply strtolower.
 
-	var $debug   = true; // Set false to hide the batcache info <!-- comment -->
+	var $debug        = false; // Set false to hide the batcache info <!-- comment -->
+        var $debug_header = true; // Set false to hide the batcache info header
 
 	var $cache_control = true; // Set false to disable Last-Modified and Cache-Control headers
 
@@ -160,6 +161,13 @@ class batcache {
 				$tag = "<!--\n\tgenerated in " . $cache['timer'] . " seconds\n\t" . strlen(serialize($cache)) . " bytes batcached for " . $this->max_age . " seconds\n-->\n";
 				$output = substr($output, 0, $tag_position) . $tag . substr($output, $tag_position);
 			}
+		}
+		if ( $this->debug_header ) {
+			header(sprintf(
+				"X-batcache: Caching, generated in %u ms, expires in %u s",
+				$cache['timer'] * 1000,
+				$batcache->max_age
+			), true);
 		}
 
 		// Pass output to next ob handler
@@ -347,6 +355,14 @@ if ( isset($batcache->cache['time']) && ! $batcache->genlock && time() < $batcac
 			$tag = "<!--\n\tgenerated " . (time() - $batcache->cache['time']) . " seconds ago\n\tgenerated in " . $batcache->cache['timer'] . " seconds\n\tserved from batcache in " . $batcache->timer_stop(false, 3) . " seconds\n\texpires in " . ($batcache->max_age - time() + $batcache->cache['time']) . " seconds\n-->\n";
 			$batcache->cache['output'] = substr($batcache->cache['output'], 0, $tag_position) . $tag . substr($batcache->cache['output'], $tag_position);
 		}
+	}
+	if ( $this->debug_header ) {
+		header(sprintf(
+			"X-batcache: Cached, generated in %u ms, expires in %u s, served in %u ms",
+			$cache['timer'] * 1000,
+			$batcache->max_age - time() + $batcache->cache['time'],
+			$batcache->timer_stop(false, 3) * 1000
+		), true);
 	}
 
 	if ( !empty($batcache->cache['headers']) ) foreach ( $batcache->cache['headers'] as $k => $v )
