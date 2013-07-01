@@ -76,7 +76,7 @@ class MemcacheSASL
     {
         $data = fread($this->_fp, 24);
         $array = $this->_show_request($data);
-	if ($array['bodylength']) {
+	if (!empty($array['bodylength'])) {
 	    $bodylength = $array['bodylength'];
 	    $data = '';
 	    while ($bodylength > 0) {
@@ -273,12 +273,9 @@ class MemcacheSASL
         $sent = $this->_send(array(
                     'opcode' => 0x07
                     ));
-        $data = $this->_recv();
-        if ($data['status'] == 0) {
-            return TRUE;
-        }
+        fclose($this->_fp);
 
-        return FALSE;
+        return TRUE;
     }
 
     public function replace($key, $value, $expiration = 0)
