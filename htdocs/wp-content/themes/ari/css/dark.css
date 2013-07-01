@@ -29,14 +29,14 @@ a:hover {
 #sidebar-primary .logo h1 a:hover {
 	color:#b7b7b7;
 }
-a, ul.sidebar li.widget_text a {
+a, #sidebar-primary ul.sidebar li.widget_text a {
 	color:#8a8a8a;
 	text-decoration: underline;
 }
 ul.sidebar a, p.meta a, .comment-meta a, p.logged-in-as a, a.post-edit-link, #footer a {
 	color:#8a8a8a;
 }
-ul.sidebar li.widget_text a:hover, ul.sidebar a:hover, .comment-meta a:hover, p.logged-in-as a:hover, p.meta a:hover, a.post-edit-link:hover, #footer a:hover {
+#sidebar-primary ul.sidebar li.widget_text a:hover, ul.sidebar a:hover, .comment-meta a:hover, p.logged-in-as a:hover, p.meta a:hover, a.post-edit-link:hover, #footer a:hover {
 	color:#b7b7b7 ! important;
 }
 #searchsubmit:hover, form#commentform p.form-submit input#submit:hover, input.wpcf7-submit:hover  {

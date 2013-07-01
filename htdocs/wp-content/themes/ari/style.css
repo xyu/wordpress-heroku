@@ -148,7 +148,7 @@ a:hover {
 	text-decoration:underline;
 }
 /* --- Link Colors --- */
-a, ul.sidebar li.widget_text a {
+a, #sidebar-primary ul.sidebar li.widget_text a {
 	color:#88C34B;
 }
 ul.sidebar a, p.meta a, .comment-meta a, p.logged-in-as a, a.post-edit-link, #footer a {
