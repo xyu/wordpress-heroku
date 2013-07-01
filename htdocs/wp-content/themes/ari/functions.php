@@ -426,7 +426,7 @@ function insert_custom_css(){
 <?php if (get_option('ari_text-color') ) { ?>body { color: <?php echo get_option('ari_text-color'); ?>; }
 #content h2 a { color: <?php echo get_option('ari_text-color'); ?>; }
 <?php } ?>
-<?php if (get_option('ari_linkcolor-1') ) { ?>a, ul.sidebar li.widget_text a { color:<?php echo get_option('ari_linkcolor-1'); ?>; }
+<?php if (get_option('ari_linkcolor-1') ) { ?>a, #sidebar-primary ul.sidebar li.widget_text a { color:<?php echo get_option('ari_linkcolor-1'); ?>; }
 #content h2 a:hover, ul.sidebar a:hover, .comment-meta a:hover, p.logged-in-as a:hover, p.meta a:hover, a.post-edit-link:hover, #footer a:hover { color:<?php echo get_option('ari_linkcolor-1'); ?>; }
 #searchsubmit:hover, form#commentform p.form-submit input#submit:hover, input.wpcf7-submit:hover  {
 	background:<?php echo get_option('ari_linkcolor-1'); ?>;
