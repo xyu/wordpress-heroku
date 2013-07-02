@@ -270,10 +270,15 @@ class MemcacheSASL
 
     public function quit()
     {
-        $sent = $this->_send(array(
-                    'opcode' => 0x07
-                    ));
-        $data = $this->_recv();
+	if ( NULL !== $this->_fp ) {
+		$sent = $this->_send(array(
+			    'opcode' => 0x07
+			    ));
+		$data = $this->_recv();
+
+		fclose($this->_fp);
+		$this->_fp = NULL;
+	}
 
         return TRUE;
     }
