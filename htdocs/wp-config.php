@@ -26,6 +26,8 @@ $sasl_memcached_config = array(
 	),
 );
 
+define('WP_DEBUG', true);
+
 // ** Heroku ClearDB settings - from Heroku Environment ** //
 $dbsettings = parse_url($_ENV["CLEARDB_DATABASE_URL"]);
 
