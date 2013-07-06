@@ -26,27 +26,31 @@ $sasl_memcached_config = array(
 	),
 );
 
-// ** Heroku Postgres settings - from Heroku Environment ** //
-$db = parse_url($_ENV["DATABASE_URL"]);
+// ** Heroku ClearDB settings - from Heroku Environment ** //
+$dbsettings = parse_url($_ENV["CLEARDB_DATABASE_URL"]);
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define('DB_NAME', trim($db["path"],"/"));
+define('DB_NAME', trim($dbsettings["path"],"/"));
 
 /** MySQL database username */
-define('DB_USER', $db["user"]);
+define('DB_USER', $dbsettings["user"]);
 
 /** MySQL database password */
-define('DB_PASSWORD', $db["pass"]);
+define('DB_PASSWORD', $dbsettings["pass"]);
 
 /** MySQL hostname */
-define('DB_HOST', $db["host"]);
+define('DB_HOST', $dbsettings["host"]);
 
 /** Database Charset to use in creating database tables. */
 define('DB_CHARSET', 'utf8');
 
 /** The Database Collate type. Don't change this if in doubt. */
 define('DB_COLLATE', '');
+
+define('MYSQL_CLIENT_FLAGS', MYSQL_CLIENT_COMPRESS);
+
+unset($dbsettings);
 
 /**#@+
  * Authentication Unique Keys and Salts.
