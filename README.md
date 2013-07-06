@@ -3,7 +3,6 @@
 _**NOTE:** This is a fork of Matt Hoofman's [WordPress Heroku](https://github.com/mhoofman/wordpress-heroku)_
 
 This project is a template for installing and running [WordPress](http://wordpress.org/) on [Heroku](http://www.heroku.com/). The repository comes bundled with the following plugins.
-* [PostgreSQL for WordPress](http://wordpress.org/extend/plugins/postgresql-for-wordpress/) - For running with Heroku Postgres add-on
 * [SASL object cache](https://github.com/xyu/SASL-object-cache) - For running with MemCachier add-on
 * [Authy Two Factor Auth](https://www.authy.com/products/wordpress)
 * [Batcache](http://wordpress.org/plugins/batcache/)
@@ -28,27 +27,16 @@ With the [Heroku gem](http://devcenter.heroku.com/articles/heroku-command), crea
 
 Add a database to your app
 
-    $ heroku addons:add heroku-postgresql:dev
-    > Adding heroku-postgresql:dev to strange-turtle-1234... done, v2 (free)
-    > Attached as HEROKU_POSTGRESQL_COLOR_URL
-    > Database has been created and is available
-    > Use `heroku addons:docs heroku-postgresql:dev` to view documentation
-
-Promote the database (replace COLOR with the color name from the above output)
-
-    $ heroku pg:promote HEROKU_POSTGRESQL_COLOR_URL
-    > Promoting HEROKU_POSTGRESQL_COLOR_URL to DATABASE_URL... done
+    $ heroku addons:add cleardb:ignite
+    > Adding cleardb:ignite on strange-turtle-1234... done, v2 (free)
+    > Use `heroku addons:docs cleardb:ignite` to view documentation.
 
 Add memcache to your app
 
     $ heroku addons:add memcachier:dev
-    > Adding memcachier:dev on xyuio-staging... done, v8 (free)
+    > Adding memcachier:dev on strange-turtle-1234... done, v3 (free)
     > MemCachier: added.  Your credentials may take up to 3 minutes to sync to our servers.
     > Use `heroku addons:docs memcachier:dev` to view documentation.
-
-Create a new production branch for your app
-
-    $ git checkout -b production
 
 Add unique keys and salts to your Heroku config
 
@@ -61,7 +49,7 @@ Add unique keys and salts to your Heroku config
         WP_SECURE_AUTH_SALT=`dd if=/dev/random bs=1 count=96 2>/dev/null | base64`\
         WP_LOGGED_IN_SALT=`dd if=/dev/random bs=1 count=96 2>/dev/null | base64`\
         WP_NONCE_SALT=`dd if=/dev/random bs=1 count=96 2>/dev/null | base64`
-    > Setting config vars and restarting xyuio... done, v3
+    > Setting config vars and restarting strange-turtle-1234... done, v4
     > WP_AUTH_KEY:         ...
     > WP_AUTH_SALT:        ...
     > WP_LOGGED_IN_KEY:    ...
@@ -70,6 +58,10 @@ Add unique keys and salts to your Heroku config
     > WP_NONCE_SALT:       ...
     > WP_SECURE_AUTH_KEY:  ...
     > WP_SECURE_AUTH_SALT: ...
+
+Create a new production branch for your app
+
+    $ git checkout -b production
 
 Deploy to Heroku
 
@@ -105,6 +97,7 @@ Media Uploads
 
 Sending Email
 -------------
+
 [WP SendGrid](http://wordpress.org/plugins/wp-sendgrid/) plugin is included in the repository allowing the use of [SendGrid](https://addons.heroku.com/sendgrid/) for media uploads.
 
 Add SendGrid to your app
@@ -123,52 +116,35 @@ Get the credentials from Heroku
 Activate the plugin with Heroku SendGrid credentials
 
 Usage
-========
+=====
 
 * Because a file cannot be written to Heroku's file system, updating and installing plugins or themes should be done locally and then pushed to Heroku.
 
-Setting up a local environment
-===========
+Setting up a Local Environment
+==============================
 
-## Mac OS X
+Mac OS X
+--------
 
 * To run WordPress locally on Mac OS X try [MAMP](http://codex.wordpress.org/Installing_WordPress_Locally_on_Your_Mac_With_MAMP).
-* This template requires Postgres as the local database so install [Postgres.app](http://postgresapp.com/)
-* Open psql, from the menubar elephant icon, and run...
-
-```
-CREATE DATABASE wordpress;
-CREATE USER wordpress WITH PASSWORD 'wordpress';
-GRANT ALL PRIVILEGES ON DATABASE wordpress to wordpress;
-```
-
-* Open /Applications/MAMP/Library/bin/envvars and add `export DATABASE_URL="postgres://wordpress:wordpress@localhost:5432/wordpress"`
+* Open /Applications/MAMP/Library/bin/envvars and add `export CLEARDB_DATABASE_URL="mysql://wordpress:wordpress@localhost/wordpress"`
 * Start MAMP and open http://localhost/wp-admin/ in a browser.
 
 ## Linux, or manual Apache config
+---------------------------------
 
-* Install Postgres according to your package manager or from source
-* Execute the following commands in psql interactive shell...
-
-```
-CREATE DATABASE wordpress;
-CREATE USER wordpress WITH PASSWORD 'wordpress';
-GRANT ALL PRIVILEGES ON DATABASE wordpress to wordpress;
-```
-
-* In your Apache config, add a `SetEnv` directive like `SetEnv DATABASE_URL postgres://wordpress:wordpress@localhost:5432/wordpress`
+* In your Apache config, add a `SetEnv` directive like `SetEnv CLEARDB_DATABASE_URL mysql://wordpress:wordpress@localhost/wordpress`
 * Change the first line of your `wp-config.php` to use `$_SERVER["DATABASE_URL"]` if `DATABASE_URL` not found in `$_ENV`:
 
 ```
 if (isset($_ENV["DATABASE_URL"]))
-  $db = parse_url($_ENV["DATABASE_URL"]);
+  $dbsettings = parse_url($_ENV["DATABASE_URL"]);
 else
-  $db = parse_url($_SERVER["DATABASE_URL"]);
+  $dbsettings = parse_url($_SERVER["DATABASE_URL"]);
 
 ```
 
 * (Re)start Apache, and open http://localhost/wp-admin in a browser.
-
 
 Updating
 ========
@@ -198,20 +174,3 @@ Heroku allows you to add custom domains to your site hosted with them.  To add y
 
     $ heroku domains:add www.example.com
     > Added www.example.com as a custom domain name to myapp.heroku.com
-
-You'll also want to cover the non "www" side of the url.
-
-    $ heroku domains:add example.com
-    > Added example.com as a custom domain name to myapp.heroku.com
-
-Once Heroku recognizes your custom domain(s) you'll then need to setup separate DNS A records for the following ip addresses to point to your domain:
-
-    75.101.163.44
-    75.101.145.87
-    174.129.212.2
-
-Once the DNS A records propagate, then simply test out your change by hitting the url in the browser to make sure you are good to go.  If you are in need of cheap DNS hosting then I would recommend [DNSimple](https://dnsimple.com/r/571e28804df06f).
-
-The last step is updating your WordPress installation to recognize the new domain.  You'll need to open up the WordPress Admin Dashboard and go to Settings --> General.  From there just update the URL for the WordPress address and you're done.
-
-If you find yourself running into problems, there is a guide posted in the Heroku Docs which can be found [here](https://devcenter.heroku.com/articles/custom-domains).
