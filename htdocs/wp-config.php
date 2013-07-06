@@ -50,7 +50,7 @@ define('DB_CHARSET', 'utf8');
 /** The Database Collate type. Don't change this if in doubt. */
 define('DB_COLLATE', '');
 
-define('MYSQL_CLIENT_FLAGS', MYSQL_CLIENT_COMPRESS);
+define('MYSQL_CLIENT_FLAGS', MYSQL_CLIENT_SSL | MYSQL_CLIENT_COMPRESS);
 
 unset($dbsettings);
 
