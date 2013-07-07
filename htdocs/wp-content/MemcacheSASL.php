@@ -315,7 +315,7 @@ class MemcacheSASL
     public function increment($key, $offset = 1)
     {
         $initial_value = 0;
-        $extra = pack('N2N2N', $this->_upper($offset), $this->_lower($offset), $this->_upper($initial_value), $this->_lower($initial_value), $expiration);
+        $extra = pack('N2N2N', $this->_upper($offset), $this->_lower($offset), $this->_upper($initial_value), $this->_lower($initial_value), 0);
         $sent = $this->_send(array(
                     'opcode' => 0x05,
                     'key' => $key,
@@ -332,7 +332,7 @@ class MemcacheSASL
     public function decrement($key, $offset = 1)
     {
         $initial_value = 0;
-        $extra = pack('N2N2N', $this->_upper($offset), $this->_lower($offset), $this->_upper($initial_value), $this->_lower($initial_value), $expiration);
+        $extra = pack('N2N2N', $this->_upper($offset), $this->_lower($offset), $this->_upper($initial_value), $this->_lower($initial_value), 0);
         $sent = $this->_send(array(
                     'opcode' => 0x06,
                     'key' => $key,
