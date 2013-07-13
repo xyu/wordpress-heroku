@@ -1,0 +1,6 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /assets
+    RewriteCond %{DOCUMENT_ROOT}/assets/$1 !-d
+    RewriteRule ^([^/]+)/(.*)$ /$2 [L]
+</IfModule>
