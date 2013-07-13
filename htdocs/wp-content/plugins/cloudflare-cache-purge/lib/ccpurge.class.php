@@ -121,6 +121,7 @@ class CCPURGE_API {
 	}
 
 	function purge_url_after_post_save($url, $ajax=false){
+		$url = home_url( parse_url( $url, PHP_URL_PATH ), 'http');
 		$results = $this->make_api_request('purge_url', array('url' => $url));
 		if($ajax){$auto="Manual";}
 		else{$auto="Automatic";}
