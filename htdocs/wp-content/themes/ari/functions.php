@@ -417,29 +417,6 @@ function themeoptions_update(){
 	
 }
 
-
-// Custom CSS-Styles for Background, Text-Color and Link Colors
-function insert_custom_css(){
-?>
-<style type="text/css">
-<?php if (get_option('ari_background-color') ) { ?>body { background-color: <?php echo get_option('ari_background-color'); ?>; } <?php } ?>
-<?php if (get_option('ari_text-color') ) { ?>body { color: <?php echo get_option('ari_text-color'); ?>; }
-#content h2 a { color: <?php echo get_option('ari_text-color'); ?>; }
-<?php } ?>
-<?php if (get_option('ari_linkcolor-1') ) { ?>a, #sidebar-primary ul.sidebar li.widget_text a { color:<?php echo get_option('ari_linkcolor-1'); ?>; }
-#content h2 a:hover, ul.sidebar a:hover, .comment-meta a:hover, p.logged-in-as a:hover, p.meta a:hover, a.post-edit-link:hover, #footer a:hover { color:<?php echo get_option('ari_linkcolor-1'); ?>; }
-#searchsubmit:hover, form#commentform p.form-submit input#submit:hover, input.wpcf7-submit:hover  {
-	background:<?php echo get_option('ari_linkcolor-1'); ?>;
-}
-<?php } ?>
-<?php if (get_option('ari_linkcolor-2') ) { ?>ul.sidebar a, p.meta a, .comment-meta a, p.logged-in-as a, a.post-edit-link, #footer a { color:<?php echo get_option('ari_linkcolor-2'); ?>; }
-<?php } ?>
-</style>
-<?php
-}
-
-add_action('wp_head', 'insert_custom_css');
-
 /* Remove the default CSS style from the WP image gallery */
 add_filter('gallery_style', create_function('$a', 'return "
 <div class=\'gallery\'>";'));
