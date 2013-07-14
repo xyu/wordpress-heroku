@@ -14,6 +14,7 @@
 	?></title>
 	<link rel="profile" href="http://gmpg.org/xfn/11" />
 	<link rel="stylesheet" type="text/css" href="/assets/v20130714/css/xyu_io.css" media="all">
+	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Droid+Sans:regular,bold|Droid+Serif:regular,italic,bold,bolditalic&subset=latin" media="all">
 	<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.0/css/font-awesome.min.css">
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 	<?php if ( is_singular() && get_option( 'thread_comments' ) ) wp_enqueue_script( 'comment-reply' ); ?>
