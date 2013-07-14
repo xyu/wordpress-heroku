@@ -1,9 +1,25 @@
 <IfModule mod_rewrite.c>
-    # Rewrite /assets/VER_CONTROL/some/file.ext to /assets/some/file.ext
     RewriteEngine On
     RewriteBase /assets
+
+    # Don't rewrite for actual files
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule . - [L]
+
+    # Remove version slug & rewrite to precompressed asset
+    RewriteCond %{HTTP:Accept-Encoding} gzip
     RewriteCond %{DOCUMENT_ROOT}/assets/$1 !-d
+    RewriteCond %{DOCUMENT_ROOT}/assets/$2.gz -f
+    RewriteRule ^([^/]+)/(.*)$ /assets/$2.gz [L]
+
+    # Remove version slug & rewrite to asset
+    RewriteCond %{DOCUMENT_ROOT}/assets/$1 !-d
+    RewriteCond %{DOCUMENT_ROOT}/assets/$2 -f
     RewriteRule ^([^/]+)/(.*)$ /assets/$2 [L]
+
+    <IfModule mod_mime.c>
+        AddEncoding x-gzip .gz
+    </IfModule>
 
     # Set 1 year expiration on everything
     <IfModule mod_headers.c>
