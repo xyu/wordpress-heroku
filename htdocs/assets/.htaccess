@@ -13,8 +13,6 @@
 
     # Set 1 year expiration on everything
     <IfModule mod_headers.c>
-        Header unset Etag
-        Header unset Last-Modified
         Header set Cache-Control "max-age=31536000"
     </IfModule>
 </IfModule>
