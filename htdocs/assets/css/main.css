@@ -338,7 +338,7 @@ table#wp-calendar td {
 #content blockquote {
 	margin:10px 0px 30px 0px;
 	padding:0px 0px 0px 16px;
-	background:url(images/blockquote-border.jpg) 0 0 repeat-y;
+	background:url(/assets/v20130717/images/blockquote-border.jpg) 0 0 repeat-y;
 	font-family:'Droid Serif',  Times, serif;
 	line-height:21px;
 	font-style:italic;
@@ -418,7 +418,7 @@ table#wp-calendar td {
 #content .post p.meta, #content .page p.meta {
 	margin:15px 0px 0px 0px;
 	padding:10px 0px 5px 0px;
-	background:url(images/meta-border.jpg) 0 0 no-repeat;
+	background:url(/assets/v20130717/images/meta-border.jpg) 0 0 no-repeat;
 	font-size:12px;
 	line-height:19px;
 	clear:both;
