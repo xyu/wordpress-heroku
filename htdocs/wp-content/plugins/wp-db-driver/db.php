@@ -198,8 +198,12 @@ class wpdb_drivers extends wpdb {
 
 		$this->is_mysql = true;
 
-		$new_link = defined( 'MYSQL_NEW_LINK' ) ? MYSQL_NEW_LINK : true;
-		$client_flags = defined( 'MYSQL_CLIENT_FLAGS' ) ? MYSQL_CLIENT_FLAGS : 0;
+		$options = array();
+		$options['key'] = defined( 'DB_SSL_KEY' ) ? DB_SSL_KEY : null;
+		$options['cert'] = defined( 'DB_SSL_CERT' ) ? DB_SSL_CERT : null;
+		$options['ca'] = defined( 'DB_SSL_CA' ) ? DB_SSL_CA : null;
+		$options['ca_path'] = defined( 'DB_SSL_CA_PATH' ) ? DB_SSL_CA_PATH : null;
+		$options['cipher'] = defined( 'DB_SSL_CIPHER' ) ? DB_SSL_CIPHER : null;
 
 		$host = $this->dbhost;
 		$port = 3306;
@@ -207,7 +211,7 @@ class wpdb_drivers extends wpdb {
 			list( $host, $port ) = explode( ':', $this->dbhost );
  		}
 
-		if ( !$this->dbh->connect( $host, $this->dbuser, $this->dbpassword, $port ) ) {
+		if ( !$this->dbh->connect( $host, $this->dbuser, $this->dbpassword, $port, $options ) ) {
 			wp_load_translations_early();
 			$this->bail( sprintf( __( "
 <h1>Error establishing a database connection</h1>

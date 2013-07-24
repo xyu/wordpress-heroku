@@ -62,8 +62,19 @@ class wpdb_driver_mysqli implements wpdb_driver {
 	 * Connect to database
 	 * @return bool
 	 */
-	public function connect( $host, $user, $pass, $port = 3306 ) {
+	public function connect( $host, $user, $pass, $port = 3306, $options = array() ) {
 		$this->dbh = new mysqli( $host, $user, $pass, '', $port );
+
+		if ( !empty( $options['key'] ) && !empty( $options['cert'] ) && !empty( $options['ca'] ) ) {
+			$this->dbh->ssl_set(
+				$options['key'],
+				$options['cert'],
+				$options['ca'],
+				$options['ca_path'],
+				$options['cipher'],
+			);
+		}
+
 		return ( !mysqli_connect_error() );
 	}
 
