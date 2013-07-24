@@ -50,6 +50,12 @@ define('DB_COLLATE', '');
 
 define('MYSQL_CLIENT_FLAGS', MYSQL_CLIENT_COMPRESS);
 
+define('WPDB_DRIVER', 'pdo_mysql');
+
+define('DB_SSL_KEY', $_ENV["KEY_PEM"]);
+define('DB_SSL_CERT', $_ENV["CERT_PEM"]);
+define('DB_SSL_CA', $_ENV["CA_PEM"]);
+
 unset($dbsettings);
 
 /**#@+
