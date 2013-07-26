@@ -2,16 +2,14 @@
 echo "Include /app/www/conf/httpd.conf" >> /app/apache/conf/httpd.conf
 
 # Write certs in env to files and replace with path
-mkdir /app/www/certs
-echo "$KEY_PEM" > /app/www/certs/key.pem
-echo "$CERT_PEM" > /app/www/certs/cert.pem
-echo "$CA_PEM" > /app/www/certs/ca.pem
-KEY_PEM="/app/www/certs/key.pem"
-CERT_PEM="/app/www/certs/cert.pem"
-CA_PEM="/app/www/certs/ca.pem"
-export KEY_PEM
-export CERT_PEM
-export CA_PEM
+cert_dir='/app/www/htdocs/certs'
+mkdir "$cert_dir"
+echo "$KEY_PEM" > "$cert_dir/key.pem"
+echo "$CERT_PEM" > "$cert_dir/cert.pem"
+echo "$CA_PEM" > "$cert_dir/ca.pem"
+export KEY_PEM="$cert_dir/key.pem"
+export CERT_PEM="$cert_dir/cert.pem"
+export CA_PEM="$cert_dir/ca.pem"
 
 # Heroku boot.sh
 for var in `env|cut -f1 -d=`; do
