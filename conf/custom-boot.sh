@@ -2,7 +2,7 @@
 echo "Include /app/www/conf/httpd.conf" >> /app/apache/conf/httpd.conf
 
 # Write certs in env to files and replace with path
-cert_dir='/app/www/htdocs/certs'
+cert_dir='/app/www/certs'
 mkdir "$cert_dir"
 echo "$KEY_PEM" > "$cert_dir/key.pem"
 echo "$CERT_PEM" > "$cert_dir/cert.pem"
