@@ -6,9 +6,9 @@ mkdir /app/www/certs
 echo "$KEY_PEM" > /app/www/certs/key.pem
 echo "$CERT_PEM" > /app/www/certs/cert.pem
 echo "$CA_PEM" > /app/www/certs/ca.pem
-export KEY_PEM="/app/www/certs/key.pem"
-export CERT_PEM="/app/www/certs/cert.pem"
-export CA_PEM="/app/www/certs/ca.pem"
+KEY_PEM="/app/www/certs/key.pem"
+CERT_PEM="/app/www/certs/cert.pem"
+CA_PEM="/app/www/certs/ca.pem"
 
 # Heroku boot.sh
 for var in `env|cut -f1 -d=`; do
