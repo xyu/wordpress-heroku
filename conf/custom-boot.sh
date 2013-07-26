@@ -9,6 +9,9 @@ echo "$CA_PEM" > /app/www/certs/ca.pem
 KEY_PEM="/app/www/certs/key.pem"
 CERT_PEM="/app/www/certs/cert.pem"
 CA_PEM="/app/www/certs/ca.pem"
+export KEY_PEM
+export CERT_PEM
+export CA_PEM
 
 # Heroku boot.sh
 for var in `env|cut -f1 -d=`; do
