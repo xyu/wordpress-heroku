@@ -226,6 +226,7 @@ function get_mysqlinfo() {
 	global $wpdb, $text_direction;
 	$sqlversion = $wpdb->get_var("SELECT VERSION() AS version");
 	$mysqlinfo = $wpdb->get_results("SHOW VARIABLES");
+	$mysqlstatus = $wpdb->get_results("SHOW STATUS");
 	if('rtl' == $text_direction) : ?>
 		<style type="text/css">
 			#MYSQLinfo,
@@ -245,7 +246,16 @@ function get_mysqlinfo() {
 	echo "<h2>MYSQL $sqlversion</h2>\n";
 	serverinfo_subnavi();
 	if($mysqlinfo) {
-		echo '<br class="clear" />'."\n";
+		echo '<br class="clear" /><h3>SHOW VARIABLES</h3>'."\n";
+		echo '<table class="widefat" dir="ltr">'."\n";
+		echo '<thead><tr><th>'.__('Variable Name', 'wp-serverinfo').'</th><th>'.__('Value', 'wp-serverinfo').'</th></tr></thead><tbody>'."\n";
+		foreach($mysqlinfo as $info) {
+			echo '<tr class="" onmouseover="this.className=\'highlight\'" onmouseout="this.className=\'\'"><td>'.$info->Variable_name.'</td><td>'.htmlspecialchars($info->Value).'</td></tr>'."\n";
+		}
+		echo '</tbody></table>'."\n";
+	}
+	if($mysqlstatus) {
+		echo '<br class="clear" /><h3>SHOW STATUS</h3>'."\n";
 		echo '<table class="widefat" dir="ltr">'."\n";
 		echo '<thead><tr><th>'.__('Variable Name', 'wp-serverinfo').'</th><th>'.__('Value', 'wp-serverinfo').'</th></tr></thead><tbody>'."\n";
 		foreach($mysqlinfo as $info) {
