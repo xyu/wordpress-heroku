@@ -33,7 +33,7 @@ class wpdb_drivers extends wpdb {
 		} elseif ( extension_loaded( 'mysql' ) ) {
 			$driver = 'mysql';
 		}
-echo "loading $driver";
+
 		// Get the new driver
 		if ( in_array( $driver, array( 'mysql', 'mysqli', 'pdo_mysql' ) ) ) {
 			require_once( dirname( __FILE__ ) . '/drivers/' . $driver . '.php' );
