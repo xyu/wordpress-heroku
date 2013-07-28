@@ -227,6 +227,10 @@ function get_mysqlinfo() {
 	$sqlversion = $wpdb->get_var("SELECT VERSION() AS version");
 	$mysqlinfo = $wpdb->get_results("SHOW VARIABLES");
 	$mysqlstatus = $wpdb->get_results("SHOW STATUS");
+var_dump(
+	$wpdb
+		->get_results("SHOW STATUS LIKE 'Ssl_cipher'")
+);
 	if('rtl' == $text_direction) : ?>
 		<style type="text/css">
 			#MYSQLinfo,
