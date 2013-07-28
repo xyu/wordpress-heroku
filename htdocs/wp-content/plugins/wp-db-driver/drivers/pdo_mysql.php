@@ -89,6 +89,12 @@ var_dump($options, $pdo_options);
 
 			$this->dbh = new PDO( $dsn, $user, $pass, $pdo_options );
 			$this->dbh->setAttribute ( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+var_dump(
+	$this
+		->dbh
+		->query("SHOW STATUS LIKE 'Ssl_cipher'")
+		->fetchAll()
+);
 		} catch ( Exception $e ) {
 			return false;
 		}
