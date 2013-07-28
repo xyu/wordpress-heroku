@@ -243,7 +243,7 @@ function get_mysqlinfo() {
 	<?php endif;
 	echo '<div class="wrap" id="MYSQLinfo" style="display: none;">'."\n";
 	screen_icon();
-	echo "<h2>MYSQL $sqlversion (" . implode(', ', class_parents($wpdb) ) . ")</h2>\n";
+	echo "<h2>MYSQL $sqlversion</h2>\n";
 	serverinfo_subnavi();
 	if($mysqlinfo) {
 		echo '<br class="clear" /><h3>SHOW VARIABLES</h3>'."\n";
