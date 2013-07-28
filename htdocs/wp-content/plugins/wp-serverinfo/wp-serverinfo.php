@@ -262,7 +262,7 @@ var_dump(
 		echo '<br class="clear" /><h3>SHOW STATUS</h3>'."\n";
 		echo '<table class="widefat" dir="ltr">'."\n";
 		echo '<thead><tr><th>'.__('Variable Name', 'wp-serverinfo').'</th><th>'.__('Value', 'wp-serverinfo').'</th></tr></thead><tbody>'."\n";
-		foreach($mysqlinfo as $info) {
+		foreach($mysqlstatus as $info) {
 			echo '<tr class="" onmouseover="this.className=\'highlight\'" onmouseout="this.className=\'\'"><td>'.$info->Variable_name.'</td><td>'.htmlspecialchars($info->Value).'</td></tr>'."\n";
 		}
 		echo '</tbody></table>'."\n";
