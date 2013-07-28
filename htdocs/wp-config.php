@@ -26,6 +26,10 @@ $sasl_memcached_config = array(
 	),
 );
 
+// Disable filesystem level changes from WP
+define('DISALLOW_FILE_EDIT',true);
+define('DISALLOW_FILE_MODS',true);
+
 // ** Heroku ClearDB settings - from Heroku Environment ** //
 $dbsettings = parse_url($_ENV["CLEARDB_DATABASE_URL"]);
 
