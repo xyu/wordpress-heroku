@@ -84,6 +84,7 @@ class wpdb_driver_pdo_mysql implements wpdb_driver {
 			$pdo_options[PDO::MYSQL_ATTR_SSL_CA] = $options['ca'];
 			$pdo_options[PDO::MYSQL_ATTR_SSL_CAPATH] = $options['ca_path'];
 			$pdo_options[PDO::MYSQL_ATTR_SSL_CIPHER] = $options['cipher'];
+var_dump($options, $pdo_options);
 			$pdo_options = array_filter( $pdo_options );
 
 			$this->dbh = new PDO( $dsn, $user, $pass, $pdo_options );
