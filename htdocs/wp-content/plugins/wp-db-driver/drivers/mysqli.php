@@ -71,7 +71,7 @@ class wpdb_driver_mysqli implements wpdb_driver {
 				$options['cert'],
 				$options['ca'],
 				$options['ca_path'],
-				$options['cipher'],
+				$options['cipher']
 			);
 		}
 
