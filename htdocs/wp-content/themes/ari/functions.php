@@ -34,6 +34,11 @@ function ari_setup() {
 		'primary' => __( 'Primary Navigation', 'ari'),
 	) );
 
+	if( !is_admin() ){
+		wp_deregister_script('jquery');
+		wp_register_script('jquery', '//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js', false, '1.10.2', true);
+		wp_enqueue_script('jquery');
+	}
 }
 endif;
 
