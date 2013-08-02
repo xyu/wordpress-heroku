@@ -83,9 +83,9 @@ class wpdb_drivers extends wpdb {
 	 * @param string   $collate The collation (optional)
 	 */
 	function set_charset($dbh, $charset = null, $collate = null) {
-		if ( !isset($charset) )
+		if ( ! isset( $charset ) )
 			$charset = $this->charset;
-		if ( !isset($collate) )
+		if ( ! isset( $collate ) )
 			$collate = $this->collate;
 		if ( $this->has_cap( 'collation', $dbh ) && !empty( $charset ) ) {
 			$query = $this->prepare( 'SET NAMES %s', $charset );
@@ -112,10 +112,8 @@ class wpdb_drivers extends wpdb {
 	}
 
 	/**
-	 * Real escape, using mysql_real_escape_string() or addslashes()
+	 * Real escape
 	 *
-	 * @see mysql_real_escape_string()
-	 * @see addslashes()
 	 * @since 2.8.0
 	 * @access private
 	 *
@@ -123,10 +121,7 @@ class wpdb_drivers extends wpdb {
 	 * @return string escaped
 	 */
 	function _real_escape( $string ) {
-		if ( $this->dbh && $this->real_escape )
-			return $this->dbh->escape( $string );
-		else
-			return addslashes( $string );
+		return $this->dbh->escape( $string );
 	}
 
 	/**
@@ -195,8 +190,15 @@ class wpdb_drivers extends wpdb {
 	 * @since 3.0.0
 	 */
 	function db_connect() {
-
 		$this->is_mysql = true;
+
+		if ( false !== strpos( $this->dbhost, ':' ) ) {
+			list( $host, $port ) = explode( ':', $this->dbhost );
+ 		}
+ 		else {
+			$host = $this->dbhost;
+			$port = 3306;
+		}
 
 		$options = array();
 		$options['key'] = defined( 'DB_SSL_KEY' ) ? DB_SSL_KEY : null;
@@ -205,24 +207,18 @@ class wpdb_drivers extends wpdb {
 		$options['ca_path'] = defined( 'DB_SSL_CA_PATH' ) ? DB_SSL_CA_PATH : null;
 		$options['cipher'] = defined( 'DB_SSL_CIPHER' ) ? DB_SSL_CIPHER : null;
 
-		$host = $this->dbhost;
-		$port = 3306;
-		if ( false !== strpos( $this->dbhost, ':' ) ) {
-			list( $host, $port ) = explode( ':', $this->dbhost );
- 		}
-
-		if ( !$this->dbh->connect( $host, $this->dbuser, $this->dbpassword, $port, $options ) ) {
+		if ( ! $this->dbh->connect( $host, $this->dbuser, $this->dbpassword, $port, $options ) ) {
 			wp_load_translations_early();
 			$this->bail( sprintf( __( "
-<h1>Error establishing a database connection</h1>
-<p>This either means that the username and password information in your <code>wp-config.php</code> file is incorrect or we can't contact the database server at <code>%s</code>. This could mean your host's database server is down.</p>
-<ul>
-	<li>Are you sure you have the correct username and password?</li>
-	<li>Are you sure that you have typed the correct hostname?</li>
-	<li>Are you sure that the database server is running?</li>
-</ul>
-<p>If you're unsure what these terms mean you should probably contact your host. If you still need help you can always visit the <a href='http://wordpress.org/support/'>WordPress Support Forums</a>.</p>
-" ), htmlspecialchars( $this->dbhost, ENT_QUOTES ) ), 'db_connect_fail' );
+			<h1>Error establishing a database connection</h1>
+			<p>This either means that the username and password information in your <code>wp-config.php</code> file is incorrect or we can't contact the database server at <code>%s</code>. This could mean your host's database server is down.</p>
+			<ul>
+				<li>Are you sure you have the correct username and password?</li>
+				<li>Are you sure that you have typed the correct hostname?</li>
+				<li>Are you sure that the database server is running?</li>
+			</ul>
+			<p>If you're unsure what these terms mean you should probably contact your host. If you still need help you can always visit the <a href='http://wordpress.org/support/'>WordPress Support Forums</a>.</p>
+			" ), htmlspecialchars( $this->dbhost, ENT_QUOTES ) ), 'db_connect_fail' );
 
 			return;
 		}
