@@ -38,4 +38,5 @@ function _use_ssl_domain_alias_for_https( $url ) {
 add_filter( 'plugins_url', '_use_ssl_domain_alias_for_https', 1 );
 add_filter( 'content_url', '_use_ssl_domain_alias_for_https', 1 );
 add_filter( 'site_url', '_use_ssl_domain_alias_for_https', 1 );
+add_filter( 'preview_post_link', '_use_ssl_domain_alias_for_https', 1 );
 
