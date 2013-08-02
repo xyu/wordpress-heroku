@@ -71,6 +71,6 @@ if ( defined( 'SSL_DOMAIN_ALIAS' ) && '' != SSL_DOMAIN_ALIAS ) {
 	add_filter( 'plugins_url', array( $wp_plugin_ssl_domain_alias, 'use_secure_domain_for_https' ), 1 );
         add_filter( 'content_url', array( $wp_plugin_ssl_domain_alias, 'use_secure_domain_for_https' ), 1 );
         add_filter( 'site_url', array( $wp_plugin_ssl_domain_alias, 'use_secure_domain_for_https' ), 1 );
-	add_filter( 'preview_post_link', array( $wp_plugin_ssl_domain_alias, 'use_secure_domain_for_http' ), 1 );
+//	add_filter( 'preview_post_link', array( $wp_plugin_ssl_domain_alias, 'use_secure_domain_for_http' ), 1 );
 }
 
