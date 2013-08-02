@@ -27,7 +27,7 @@
 function _use_ssl_domain_alias_for_https( $url ) {
     static $domain;
     if ( ! isset( $domain ) )
-        $domain = defined( 'SSL_DOMAIN_ALIAS' ) && !empty( SSL_DOMAIN_ALIAS ) ? parse_url( get_option( 'siteurl' ), PHP_URL_HOST ) : false;
+        $domain = ( defined( 'SSL_DOMAIN_ALIAS' ) && '' != SSL_DOMAIN_ALIAS ) ? parse_url( get_option( 'siteurl' ), PHP_URL_HOST ) : false;
 
     if ( $domain && 0 === strpos( $url, 'https' ) )
         $url = str_replace( $domain, SSL_DOMAIN_ALIAS, $url );
