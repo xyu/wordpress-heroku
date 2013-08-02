@@ -35,7 +35,7 @@ class wp_plugin_ssl_domain_alias {
 	 */
 	public function use_secure_domain_for_https( $url ) {
 	    if ( 0 === strpos( $url, 'https://' ) )
-		$url = str_replace( 'https://'.$domain, 'https://'.SSL_DOMAIN_ALIAS, $url );
+		$url = str_replace( "https://{$this->_http_domain}", "https://{$this->_https_domain}", $url );
 
 	    return $url;
 	}
@@ -56,7 +56,7 @@ class wp_plugin_ssl_domain_alias {
 	 */
 	public function use_secure_domain_for_http( $url ) {
 	    if ( 0 === strpos( $url, 'http://' ) )
-		$url = str_replace( 'http://'.$domain, 'https://'.SSL_DOMAIN_ALIAS, $url );
+		$url = str_replace( "http://{$this->_http_domain}", "https://{$this->_https_domain}", $url );
 
 	    return $url;
 	}
