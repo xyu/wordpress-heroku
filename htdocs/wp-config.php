@@ -30,6 +30,13 @@ $sasl_memcached_config = array(
 define('DISALLOW_FILE_EDIT',true);
 define('DISALLOW_FILE_MODS',true);
 
+// Set SSL management domain
+if ( !empty( $_ENV["SSL_DOMAIN"] ) ) {
+	define( 'SSL_DOMAIN_ALIAS', $_ENV["SSL_DOMAIN"] );
+	define( 'FORCE_SSL_LOGIN', true );
+	define( 'FORCE_SSL_ADMIN', true );
+}
+
 // ** Heroku ClearDB settings - from Heroku Environment ** //
 $dbsettings = parse_url($_ENV["CLEARDB_DATABASE_URL"]);
 
