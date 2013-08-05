@@ -108,7 +108,21 @@ class wpdb_drivers extends wpdb {
 	 * @return null Always null.
 	 */
 	function select( $db, $dbh = null ) {
-		$this->dbh->select( $db );
+		$result = $dbh->select( $db );
+
+		if ( ! $result ) {
+			$this->ready = false;
+			wp_load_translations_early();
+			$this->bail( sprintf( __( '<h1>Can&#8217;t select database</h1>
+<p>We were able to connect to the database server (which means your username and password is okay) but not able to select the <code>%1$s</code> database.</p>
+<ul>
+<li>Are you sure it exists?</li>
+<li>Does the user <code>%2$s</code> have permission to use the <code>%1$s</code> database?</li>
+<li>On some systems the name of your database is prefixed with your username, so it would be like <code>username_%1$s</code>. Could that be the problem?</li>
+</ul>
+<p>If you don\'t know how to set up a database you should <strong>contact your host</strong>. If all else fails you may find help at the <a href="http://wordpress.org/support/">WordPress Support Forums</a>.</p>' ), htmlspecialchars( $db, ENT_QUOTES ), htmlspecialchars( $this->dbuser, ENT_QUOTES ) ), 'db_select_fail' );
+			return;
+		}
 	}
 
 	/**
@@ -182,6 +196,7 @@ class wpdb_drivers extends wpdb {
 	 */
 	function flush() {
 		$this->dbh->flush();
+		parent::flush();
 	}
 
 	/**
@@ -210,15 +225,15 @@ class wpdb_drivers extends wpdb {
 		if ( ! $this->dbh->connect( $host, $this->dbuser, $this->dbpassword, $port, $options ) ) {
 			wp_load_translations_early();
 			$this->bail( sprintf( __( "
-			<h1>Error establishing a database connection</h1>
-			<p>This either means that the username and password information in your <code>wp-config.php</code> file is incorrect or we can't contact the database server at <code>%s</code>. This could mean your host's database server is down.</p>
-			<ul>
-				<li>Are you sure you have the correct username and password?</li>
-				<li>Are you sure that you have typed the correct hostname?</li>
-				<li>Are you sure that the database server is running?</li>
-			</ul>
-			<p>If you're unsure what these terms mean you should probably contact your host. If you still need help you can always visit the <a href='http://wordpress.org/support/'>WordPress Support Forums</a>.</p>
-			" ), htmlspecialchars( $this->dbhost, ENT_QUOTES ) ), 'db_connect_fail' );
+<h1>Error establishing a database connection</h1>
+<p>This either means that the username and password information in your <code>wp-config.php</code> file is incorrect or we can't contact the database server at <code>%s</code>. This could mean your host's database server is down.</p>
+<ul>
+	<li>Are you sure you have the correct username and password?</li>
+	<li>Are you sure that you have typed the correct hostname?</li>
+	<li>Are you sure that the database server is running?</li>
+</ul>
+<p>If you're unsure what these terms mean you should probably contact your host. If you still need help you can always visit the <a href='http://wordpress.org/support/'>WordPress Support Forums</a>.</p>
+" ), htmlspecialchars( $this->dbhost, ENT_QUOTES ) ), 'db_connect_fail' );
 
 			return;
 		}

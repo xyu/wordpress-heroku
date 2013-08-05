@@ -109,8 +109,11 @@ class wpdb_driver_pdo_mysql implements wpdb_driver {
 	public function select( $db ) {
 		try {
 			$this->dbh->exec( sprintf( 'USE `%s`', $db ) );
-		} catch ( ErrorException $e ) {
+		} catch ( Exception $e ) {
+			return false;
 		}
+
+		return true;
 	}
 
 	/**
