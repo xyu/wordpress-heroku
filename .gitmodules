@@ -1,3 +1,15 @@
 [submodule "WordPress"]
 	path = WordPress
 	url = https://github.com/WordPress/WordPress.git
+[submodule "site_overwrites/wp-content/plugins/wpro"]
+	path = site_overwrites/wp-content/plugins/wpro
+	url = https://github.com/alfreddatakillen/wpro.git
+[submodule "site_overwrites/wp-content/plugins/sendgrid-email-delivery-simplified"]
+	path = site_overwrites/wp-content/plugins/sendgrid-email-delivery-simplified
+	url = https://github.com/sendgrid/wordpress.git
+[submodule "site_overwrites/wp-content/plugins/authy-two-factor-authentication"]
+	path = site_overwrites/wp-content/plugins/authy-two-factor-authentication
+	url = https://github.com/authy/authy-wordpress.git
+[submodule "site_overwrites/wp-content/plugins/jetpack"]
+	path = site_overwrites/wp-content/plugins/jetpack
+	url = https://github.com/Automattic/jetpack.git
