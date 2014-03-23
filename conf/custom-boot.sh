@@ -3,12 +3,8 @@ echo "Include /app/www/conf/httpd.conf" >> /app/apache/conf/httpd.conf
 
 # Build the release
 echo "Building release"
-mkdir /app/www/htdocs
 cp -R /app/www/WordPress/* /app/www/htdocs/.
-cp -R /app/www/site_overwrites/* /app/www/htdocs/.
-cp -R /app/www/site_overwrites/.* /app/www/htdocs/.
 rm -rf /app/www/WordPress
-rm -rf /app/www/site_overwrites
 
 # Heroku boot.sh
 for var in `env|cut -f1 -d=`; do
