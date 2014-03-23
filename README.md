@@ -8,7 +8,9 @@ This project is a template for installing and running [WordPress](http://wordpre
 * [Batcache](http://wordpress.org/plugins/batcache/)
 * [Jetpack](http://jetpack.me/)
 * [WP Read-Only](http://wordpress.org/extend/plugins/wpro/)
-* [WP SendGrid](http://wordpress.org/plugins/wp-sendgrid/)
+* [SendGrid](http://wordpress.org/plugins/sendgrid-email-delivery-simplified/)
+
+WordPress and most plugins included are git submodules which makes upgrading WordPress and plugins simple.
 
 Installation
 ============
@@ -98,7 +100,7 @@ Media Uploads
 Sending Email
 -------------
 
-[WP SendGrid](http://wordpress.org/plugins/wp-sendgrid/) plugin is included in the repository allowing the use of [SendGrid](https://addons.heroku.com/sendgrid/) for media uploads.
+[SendGrid](http://wordpress.org/plugins/sendgrid-email-delivery-simplified/) plugin is included in the repository allowing the use of [SendGrid](https://addons.heroku.com/sendgrid/) for emails.
 
 Add SendGrid to your app
 
@@ -119,32 +121,6 @@ Usage
 =====
 
 * Because a file cannot be written to Heroku's file system, updating and installing plugins or themes should be done locally and then pushed to Heroku.
-
-Setting up a Local Environment
-==============================
-
-Mac OS X
---------
-
-* To run WordPress locally on Mac OS X try [MAMP](http://codex.wordpress.org/Installing_WordPress_Locally_on_Your_Mac_With_MAMP).
-* Open /Applications/MAMP/Library/bin/envvars and add `export CLEARDB_DATABASE_URL="mysql://wordpress:wordpress@localhost/wordpress"`
-* Start MAMP and open http://localhost/wp-admin/ in a browser.
-
-## Linux, or manual Apache config
----------------------------------
-
-* In your Apache config, add a `SetEnv` directive like `SetEnv CLEARDB_DATABASE_URL mysql://wordpress:wordpress@localhost/wordpress`
-* Change the first line of your `wp-config.php` to use `$_SERVER["DATABASE_URL"]` if `DATABASE_URL` not found in `$_ENV`:
-
-```
-if (isset($_ENV["DATABASE_URL"]))
-  $dbsettings = parse_url($_ENV["DATABASE_URL"]);
-else
-  $dbsettings = parse_url($_SERVER["DATABASE_URL"]);
-
-```
-
-* (Re)start Apache, and open http://localhost/wp-admin in a browser.
 
 Updating
 ========
